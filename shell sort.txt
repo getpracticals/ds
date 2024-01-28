@@ -1,0 +1,30 @@
+#include<iostream> using namespace std; int main()
+{
+int a[10], i, j, n,temp; cout<<"Enter values :\n"; for(i=0;i<10;i++)
+{
+cin>>a[i];
+}
+cout<<"\nBefore Shell sort values: \n"; for(i=0; i<10; i++)
+{
+cout<<"Iteration "<<i<<"\t"<<a[i]<<"\n";
+}
+cout<<"\nAfter Shell sort values: \n"; for(i=10/2;i>0;i/=2)
+{
+int flag=1; while(flag==1)
+{
+flag=0; for(j=0;j<10-i;j++)
+{
+if(a[j]>a[j+i])
+{
+temp=a[j]; a[j]=a[j+i]; a[j+i]=temp; flag=1;
+}
+}
+}
+
+}
+for(i=0;i<10;i++)
+{
+cout<<"iteration "<<i<<"\t"<<a[i]<<"\n";
+}
+return 0;
+}

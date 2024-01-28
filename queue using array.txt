@@ -1,0 +1,75 @@
+#include<iostream> #include<conio.h> #include<stdlib.h> using namespace std; class queue
+{
+public:
+int q[4],x,result; int front=-1;
+int rear=-1; int maxsize=4;
+void enqueue(int x)
+{
+if(rear==maxsize-1)
+{
+cout<<"Queue full.\n\n";
+}
+else
+{
+rear++; q[rear]=x;
+}
+}
+void dequeue()
+{
+if(rear==-1)
+{
+cout<<"Queue empty.\n\n";
+}
+else
+{
+cout<<"Deleted.\n"; if(front==rear)
+{
+front=-1; rear=-1;
+}
+else
+{
+x=q[front]; front++;
+}
+}
+}
+void display()
+{
+
+if(rear==-1)
+{
+cout<<"Queue empty.\n\n";
+}
+else
+{
+
+cout<<"Queue :\n";
+for(int i=front+1;i<=rear;i++)
+{
+cout<<q[i]<<"\n";
+}
+}
+}
+};
+
+int main()
+{
+int ch,x; queue q; do
+{
+cout<<"1.Enqueue\n2.Dequeue\n3.Display\n4.Exit\n"; cout<<"Enter your choice :\n";
+cin>>ch; switch(ch)
+{
+case 1:
+cout<<"Enter the value :\n"; cin>>x;
+q.enqueue(x);
+
+break; case 2:
+q.dequeue(); break;
+case 3:
+q.display(); break;
+case 4:
+break; default:
+cout<<"\nInvalid choice!!\n";
+}
+}
+while(ch<4); return 0;
+}

@@ -1,0 +1,54 @@
+#include<iostream> #include<conio.h> using namespace std; class radix
+{
+public: void sort()
+{
+int arr[6],i,j,k,large,noofpasses=0,temp[10][10],divisor=1,arrcount[10],n;
+cout<<"Radix Sort\n\n";
+cout<<"Enter the size of Array :\n"; cin>>n;
+cout<<"\nEnter values :\n"; for(i=0;i<n;i++)
+{
+cin>>arr[i];
+}
+cout<<"\nBefore Radix sort values :\n"; for(i=0;i<n;i++)
+{
+cout<<"Iteration "<<i<<"\t"<<arr[i]<<"\n";
+}
+large=arr[0]; for(i=0;i<n;i++)
+{
+if(arr[i]>large) large=arr[i];
+}
+while(large>0)
+{
+noofpasses++; large/=10;
+}
+for(i=0;i<noofpasses;i++)
+{
+for(j=0;j<10;j++) arrcount[j]=0;
+
+for(j=0;j<n;j++)
+{
+k=(arr[j]/divisor)%10;
+
+temp[k][arrcount[k]++]=arr[j];
+}
+int u=0;
+for(int p=0;p<10;p++)
+{
+for(j=0;j<arrcount[p];j++)
+{
+arr[u++]=temp[p][j];
+
+divisor*=10;
+}
+}
+}
+cout<<"\nAfter Radix sort values :\n"; for(i=0;i<n;i++)
+{
+cout<<"Iteration "<<i<<"\t"<<arr[i]<<"\n";
+}
+}
+};
+int main()
+{
+radix r; r.sort(); return 0;
+}

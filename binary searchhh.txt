@@ -1,0 +1,21 @@
+#include<iostream> #include<conio.h>
+using namespace std; int main()
+{
+int i,n,a[10],st=0,ed=9,mid;
+
+cout<<"Enter 10 elements:\n"; for(i=0;i<10;i++)
+{
+cin>>a[i];
+}
+cout<<"\nEnter the number you want to search :\n"; cin>>n;
+mid=(st+ed)/2; while(n!=a[mid]&&st<=ed)
+{
+if(n>a[mid])
+st=mid+1; else
+ed=mid-1; mid=(st+ed)/2;
+}
+if(n==a[mid])
+cout<<"Element found at position "<<mid<<".\n"; if(st>ed)
+cout<<"Element not found.\n";
+}
+

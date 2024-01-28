@@ -1,0 +1,159 @@
+A]Arrays
+#include<iostream> #define MAX 5
+using namespace std;
+
+class stack
+{
+public:
+int top=-1;
+int x, stk[5],i; int push(int x)
+{
+if(top == MAX - 1)
+{
+cout<<"Stack Overflow\n\n";
+}
+else
+{
+cout<<"Enter the number to push to the stack :\n"; cin>>x;
+
+stk[++top]=x; stk[top]=x;
+}
+}
+
+int pop()
+{
+if(top==-1)
+{
+cout<<"Stack Underflow\n\n";
+}
+cout<<"Popped value : "; x=stk[top];
+top--; cout<<x<<"\n";
+}
+
+void display()
+{
+if(top==-1)
+{
+cout<<"Stack is empty.\n\n";
+}
+else
+
+cout<<"Stack :\n"; for(i=top;i>=0;i--)
+{
+cout<<stk[i]<<"\n";
+}
+}
+};
+
+int main()
+{
+stack s; int ch,x;
+
+while(ch!=4)
+{
+cout<<"1.Push\n2.Pop\n3.Display\n4.Exit\n"; cout<<"Enter the value for operation :\n"; cin>>ch;
+
+switch(ch)
+{
+case 1:
+s.push(x); break;
+
+case 2:
+s.pop(); break;
+
+case 3:
+s.display(); break;
+
+case 4:
+break; default:
+cout<<"\nWrong choice.\n\n";
+}
+
+}
+return 0;
+}
+
+
+
+
+
+
+
+
+
+B]Linked list
+#include<iostream> using namespace std;
+//Creating a NODE Structure struct node
+{
+int data;
+struct node *next;
+};
+//Creating a class STACK class stack
+{
+public:
+struct node *top=NULL;
+
+int push(int x) //to insert an element
+{
+struct node *ptr; ptr=new node; ptr->data=x;
+ptr->next=NULL; if(top!=NULL) ptr->next=top; top=ptr;
+}
+void pop() //to delete an element
+{
+struct node *temp; if(top==NULL)
+{
+cout<<"\nStack is empty.\n";
+}
+else
+{
+temp=top; top=top->next;
+cout<<"Popped value : "<<temp->data<<"\n"; delete temp;
+}
+}
+void display() //to show the stack
+{
+struct node *ptr1=top; if(top==NULL)
+{
+cout<<"Stack is empty.\n\n";
+}
+else
+{
+cout<<"Stack :\n"; while(ptr1!=NULL)
+{
+
+
+cout<<ptr1->data<<"\n";
+ptr1=ptr1->next;
+}
+}
+}
+};
+
+int main()
+{
+stack s; int ch,x;
+while(ch!=4)
+{
+cout<<"1.Push\n2.Pop\n3.Display\n4.Exit\n"; cout<<"Enter the value for operation :\n"; cin>>ch;
+switch(ch)
+{
+case 1:
+cout<<"Enter the value :\n"; cin>>x;
+s.push(x); break;
+case 2:
+s.pop(); break;
+case 3:
+s.display(); break;
+case 4:
+break; default:
+cout<<"\nWrong choice.\n\n";
+
+}
+}
+return 0;
+}
+
+
+
+
+
