@@ -1,0 +1,25 @@
+#include <iostream>
+//adjacency matrix
+using namespace std;
+
+int main()
+{
+   int g[5][5],i,j;
+   for(i=0;i<5;i++)
+   {
+       for(j=0;j<5;j++)
+       {
+           cout<<"enter 1 if there is edge("<<i+1<<","<<j+1<<")";
+           cin>>g[i][j];
+       }
+   }
+
+   for(i=0;i<5;i++)
+   {
+       for(j=0;j<5;j++)
+       {
+           cout<<g[i][j]<<"\t";
+       }
+       cout<<"\n";
+   }
+return 0;
