@@ -1,0 +1,72 @@
+#include <iostream>
+#include<malloc.h>
+using namespace std;
+
+struct Node
+{
+    int data;
+    struct Node * left;
+    struct Node * right;
+};
+struct Node *  create(int v)
+{
+    struct Node * n=(struct Node *)malloc(sizeof(struct Node));
+    n->data=v;
+    n->left=NULL;
+    n->right=NULL;
+    return n;
+};
+struct Node * insertLeft(struct Node * root,int v)
+{
+    root->left=create(v);
+    return root->left;
+};
+struct Node * insertRight(struct Node * root,int v)
+{
+    root->right=create(v);
+    return root->right;
+};
+void preorder(struct Node * root)
+{
+    if(root==NULL)
+        return;
+    //printf("%d",root=>data);
+    //cout<<root=>data;
+   cout<<root->data<<"\t";
+    preorder(root->left);
+    preorder(root->right);
+}
+void inorder(struct Node * root)
+{
+    if(root==NULL)
+        return;
+    preorder(root->left);
+    //printf("%d",root=>data);
+    //cout<<root=>data;
+    cout<<root->data;
+
+    preorder(root->right);
+}
+void postorder(struct Node * root)
+{
+    if(root==NULL)
+        return;
+
+    //cout<<root=>data;
+    preorder(root->left);
+    preorder(root->right);
+    //printf("%d",root=>data);
+    cout<<root->data<<"\t";
+}
+int main()
+{
+    struct Node * l=create(5);
+    insertLeft(l,3);
+    insertRight(l,20);
+    cout<<"\npre order\n";
+    preorder(l);
+    cout<<"\npost order\n";
+    postorder(l);
+    cout<<"\nin order\n";
+    inorder(l);
+}

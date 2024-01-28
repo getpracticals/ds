@@ -1,0 +1,48 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+bool parenthesis(string s)
+{
+    stack<char> k;
+    for(int i=0;i<s.length();i++)
+    {
+        if(k.empty())
+        {
+            k.push(s[i]);
+
+        }
+        else if(s[i]==']' && k.top()=='[' || s[i]=='}' && k.top()=='{' || s[i]==')' && k.top()=='(' )
+        {
+            k.pop();
+        }
+        else
+        {
+        k.push(s[i]);
+        }
+    }
+    if(k.empty())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+
+}
+
+int main()
+{
+  string exp;
+  cin>>exp;
+  if(parenthesis(exp))
+  {
+      cout<<"balance";
+  }
+  else{
+    cout<<"unbalance";
+  }
+    return 0;
+}

@@ -1,0 +1,52 @@
+#include <iostream>
+#include <stack>
+
+using namespace std;
+
+int parenthesis(string s)
+{
+    int v1,v2,r;
+    stack<int> k;
+    for(int i=0;i<s.length();++i)
+    {
+        if(isdigit(s[i]))
+        {
+            k.push(s[i]-'0');
+
+        }
+        else{
+
+            v1=(int)k.top();
+            k.pop();
+            v2=(int)k.top();
+            k.pop();
+            switch(s[i])
+            {
+            case '+':
+                r=v1+v2;
+                k.push(r);
+                break;
+            case '*':
+                r=v1*v2;
+                k.push(r);
+                break;
+            case '-':
+                r=v1-v2;
+                k.push(r);
+                break;
+            case '/':
+                r=v1/v2;
+                k.push(r);
+                break;
+            }
+        }
+}
+return r;
+}
+int main()
+{
+  string exp="345+*";
+ // cin>>exp;
+  cout<<parenthesis(exp);
+    return 0;
+}
