@@ -1,0 +1,85 @@
+#include<iostream> using namespace std;
+
+class priority
+{
+public: struct node
+{
+int pr; int data;
+struct node *next;
+};
+node *front=NULL;
+
+void insert(int item, int pr)
+{
+node *tmp, *q; tmp=new node; tmp->data=item; tmp->pr=pr;
+if(front==NULL || pr < front->pr)
+{
+tmp->next=front; front=tmp;
+}
+else
+{
+q=front;
+while(q->next!=NULL && q->next->pr<=pr) q=q->next;
+
+tmp->next = q-> next; q->next=tmp;
+}
+}
+
+void del()
+{
+node *tmp,*q; if(front==NULL)
+cout<<"Queue is Empty"; else
+{
+tmp=front;
+cout<<tmp->data<<" is deleted \n";
+
+front=front->next;
+}
+}
+
+void display()
+{
+
+if(front==NULL)
+{
+cout<<"Queue is Empty.\n\n";
+}
+else
+{
+node *ptr; ptr=front;
+cout<<"Item\t"<<"Priority\n"; while(ptr!=NULL)
+{
+cout<<ptr->data<<"\t"; cout<<ptr->pr<<"\t"; cout<<"\n";
+ptr=ptr->next;
+}
+}
+}
+};
+
+int main()
+{
+priority p; int ch,x,y;
+
+while(ch!=0)
+{
+cout<<"1.Insert\n2.Delete\n3.Display\n"; cout<<"Enter the choice :\n";
+cin>>ch; switch(ch)
+{
+case 1:
+cout<<"Enter the Item :\n"; cin>>x;
+cout<<"Enter the Priority :\n"; cin>>y;
+p.insert(x,y); break;
+case 2:
+p.del(); break;
+case 3:
+p.display(); break;
+
+default:
+
+cout<<"Enter the correct choice";
+break;
+}
+
+}
+return 0;
+}

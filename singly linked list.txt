@@ -1,0 +1,227 @@
+#include<iostream> using namespace std; class linklist
+{
+public:
+int flag=true;
+int pos, i, value, count=0; struct node
+{
+int data;
+struct node *next;
+};
+struct node *tmp=NULL; struct node *tmp1=NULL; struct node *start=NULL; struct node *p=NULL; struct node *ptr=NULL; struct node *ptr1=NULL; struct node *ptr2=NULL; struct node *ptr3=NULL;
+
+int insert_at_beg(int x)
+{
+tmp = new node; tmp->data=x; tmp->next=NULL;
+if(start == NULL)
+{
+start=tmp;
+start->next=NULL;
+}
+else
+{
+tmp1=start; start=tmp;
+start->next=tmp1;
+}
+}
+
+int insert_at_end(int x)
+{
+tmp = new node; tmp->data=x; tmp->next=NULL;
+
+p=start;
+while(p->next!=NULL)
+
+{
+p=p->next;
+}
+p->next=tmp; tmp->next=NULL;
+
+}
+
+int insert_at_pos(int x)
+{
+cout<<"Insert the position :\n"; cin>>pos;
+tmp = new node; tmp->data=x; tmp->next=NULL; p=start; while(p!=NULL)
+{
+p=p->next; count++;
+}
+if(pos==1)
+{
+start=tmp;
+start->next=NULL;
+}
+else if(pos > 1 && pos<count)
+{
+p=start; for(i=1;i<pos;i++)
+{
+ptr=p; p=p->next;
+}
+
+ptr->next=tmp; tmp->next=p;
+}
+else
+{
+cout<<"Invalid position.\n";
+}
+}
+
+int search_pos()
+{
+cout<<"Insert the value:\n"; cin>>value;
+
+count=0;
+flag=false; if(start==NULL)
+
+{
+cout<<"List is empty\n";
+}
+else
+{
+p=start; while(p!=NULL)
+{
+count++;
+if(p->data == value)
+{
+flag==true;
+cout<<"Value found at "<<count<<" position.\n";
+}
+p=p->next;
+
+}
+}
+}
+
+void del()
+{
+cout<<"Delete the position:\n"; cin>>pos;
+if(start==NULL)
+{
+cout<<"List is empty.\n";
+}
+else
+{
+if(pos==1)
+{
+tmp=start; start=start->next; delete (tmp);
+}
+else
+{
+while(p!=NULL)
+{
+count++; p=p->next;
+}
+}
+if(pos>1 && pos<count)
+{
+p=start; for(i=1;i<pos;i++)
+{
+ptr=p; p=p->next;
+
+}
+ptr->next=p->next;
+}
+}
+}
+int sort()
+{
+int x; if(start==NULL)
+{
+cout<<"List is empty.\n";
+}
+ptr=start; while(ptr!=NULL)
+{
+for(p=ptr->next;p!=NULL;p=p->next)
+{
+if(ptr->data>p->data)
+{
+x=ptr->data;
+ptr->data=p->data; p->data=x;
+}
+}
+ptr=ptr->next;
+}
+}
+
+int rev()
+{
+if(start==NULL)
+{
+cout<<"List is empty.\n";
+}
+if(start->next==NULL)
+{
+cout<<"only one.\n";
+}
+ptr1=start; ptr2=ptr1->next; ptr3=ptr2->next; ptr1->next=NULL; ptr2->next=ptr1; while(ptr3!=NULL)
+{
+ptr1=ptr2; ptr2=ptr3; ptr3=ptr3->next; ptr2->next=ptr1;
+}
+start=ptr2;
+}
+
+void display()
+{
+if(start==NULL)
+{
+cout<<"List is empty.\n";
+}
+else
+{
+p=start;
+cout<<"\nSingly Linked List :\n"; while(p!=NULL)
+{
+cout<< p->data<<" -> "; p=p->next;
+}
+cout<<"\n";
+}
+}
+};
+int main()
+{
+linklist l; int ch,x;
+
+while(ch!=0)
+{
+cout<<"\n1.Insert at beginning\n2.Insert at end\n3.Insert at position\n4.Delete\n5.Search\n6.Display\n7.Sort\n8.Reverse\n9.Exit";
+cout<<"\nEnter the choice:\n"; cin>>ch;
+switch(ch)
+{
+case 1:
+cout<<"Enter the value\n"; cin>>x; l.insert_at_beg(x); l.display();
+break;
+
+case 2:
+cout<<"Enter the value\n"; cin>>x; l.insert_at_end(x); l.display();
+break;
+
+case 3:
+cout<<"Enter the value\n"; cin>>x; l.insert_at_pos(x); l.display();
+break;
+
+
+case 4:
+l.del();
+l.display(); break;
+
+case 5:
+l.search_pos(); l.display(); break;
+
+case 6:
+l.display(); break;
+
+case 7:
+l.sort();
+l.display(); break;
+
+case 8:
+l.rev();
+l.display(); break;
+
+case 9:
+break;
+default:
+cout<<"Wrong choice\n";
+}
+}
+return 0;
+}

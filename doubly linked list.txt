@@ -1,0 +1,245 @@
+#include<iostream> using namespace std; class doubly
+{
+public:
+
+
+struct node
+{
+int data;
+struct node *next; struct node *prev;
+};
+struct node *tmp=NULL; struct node *ptr=NULL; struct node *start=NULL; struct node *p=NULL; struct node *p1=NULL; struct node *p2=NULL; void create(int x)
+{
+tmp=new node; tmp->data=x;
+tmp->next=NULL; if(start==NULL)
+{
+tmp->prev=NULL; start=tmp;
+}
+else
+{
+p=start;
+while(p->next!=NULL)
+{
+p=p->next;
+}
+p->next=tmp; tmp->prev=p;
+}
+}
+void add_atbegin(int x)
+
+{
+if(start==NULL)
+{
+cout<<"List is empty.\n\n";
+}
+tmp=new node; tmp->data=x; tmp->next=start; start->prev=tmp;
+
+
+start=tmp;
+}
+void add_after(int x,int pos)
+{
+if(start==NULL)
+{
+cout<<"List is empty.\n\n";
+}
+p=start;
+for(int i=0;i<pos-1;i++)
+{
+p=p->next; if(p==NULL)
+{
+cout<<"Position does not exist.\n\n";
+}
+}
+tmp=new node; tmp->data=x;
+if(p->next==NULL)
+{
+p->next=tmp;
+tmp->next=NULL; tmp->prev=p;
+}
+else
+{
+tmp->next=p->next; tmp->next->prev=tmp; p->next=tmp;
+tmp->prev=p;
+}
+}
+void del(int x)
+{
+
+if(start->data==x) //deleting first element
+{
+tmp=start; start=start->next; start->prev=NULL; delete(tmp);
+}
+p=start;
+while(p->next->next!=NULL) //deleting element in between
+{
+if(p->next->data==x)
+{
+tmp=p->next;
+p->next=tmp->next; tmp->next->prev=p; delete(tmp);
+}
+p=p->next;
+}
+if(p->next->data==x) //last element deleted
+{
+tmp=p->next; delete(tmp);
+p->next=NULL;
+}
+}
+void reverse()
+
+
+{
+p1=start; p2=p1->next;
+p1->next=NULL; p1->prev=p2; while(p2!=NULL)
+{
+p2->prev=p2->next; p2->next=p1; p1=p2;
+p2=p2->prev;
+}
+start=p1;
+cout<<"List reversed.\n";
+}
+void count()
+{
+
+p=start; int cnt=0;
+while(p!=NULL)
+{
+p=p->next; cnt++;
+}
+cout<<"Number of element are "<<cnt<<".\n";
+}
+void search()
+{
+int count=0,value; int flag=0;
+cout<<"Enter the element to be searched :\n"; cin>>value;
+if(start==NULL)
+{
+cout<<"List is empty.\n\n";
+}
+else
+{
+p=start; while(p!=NULL)
+{
+count++;
+if(p->data==value)
+{
+flag=1;
+cout<<"Element found at position "<<count<<".\n";
+}
+p=p->next;
+}
+}
+}
+void sort()
+{
+if(start==NULL)
+{
+cout<<"list is empty.\n\n";
+}
+ptr=start; while(ptr!=NULL)
+{
+for(p=ptr->next;p!=NULL;p=p->next)
+
+{
+if(ptr->data > p->data)
+{
+int x=ptr->data;
+ptr->data = p->data; p->data = x;
+}
+}
+ptr=ptr->next;
+}
+}
+void display()
+{
+if(start==NULL)
+{
+cout<<"List is empty.\n\n"; return;
+}
+else
+{
+p=start;
+cout<<"\nDoubly Linked List :\n"; while(p!=NULL)
+{
+cout<<p->data<<" -> "; p=p->next;
+}
+cout<<"\n\n";
+}
+}
+};
+int main()
+{
+doubly d; int x,ch; int pos;
+
+
+while(ch!=0)
+{
+cout<<"1.Create a list\n2.Add at begin\n3.Add after\n4.Search\n5.Reverse\n6.Count\n7.Sort\n";
+cout<<"8.Display\n9.Delete\n10.Exit"; cout<<"\nEnter the choice:\n"; cin>>ch;
+
+
+switch(ch)
+{
+case 1:
+cout<<"Enter the value :\n"; cin>>x;
+d.create(x);
+d.display(); break;
+
+
+case 2:
+cout<<"Enter the value :\n"; cin>>x;
+d.add_atbegin(x); d.display(); break;
+
+
+case 3:
+
+
+cout<<"Enter the position :\n"; cin>>pos;
+cout<<"Enter the value :\n"; cin>>x;
+d.add_after(x,pos); d.display();
+break;
+
+
+case 4:
+d.search();
+d.display(); break;
+
+
+case 5:
+d.reverse();
+d.display(); break;
+
+
+case 6:
+d.count();
+d.display();
+
+break;
+
+
+case 7:
+cout<<"Before sorting -"; d.display();
+d.sort();
+cout<<"After sorting -"; d.display();
+break;
+
+
+case 8 :
+d.display(); break;
+
+
+case 9:
+cout<<"Enter the element to be delete :\n"; cin>>x;
+d.del(x);
+d.display(); break;
+
+
+case 10:
+break;
+
+
+default:
+cout<<"Wrong choice.\n";
+}
+return 0;
